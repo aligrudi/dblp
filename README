@@ -1,0 +1,8 @@
+DBLP-REFER
+==========
+
+This program converts DBLP API search results to Troff refer
+records.  The dblp.sh wrapper script uses curl to fetch the
+results from dblp.org and converts them to refer records:
+
+  $ ./dblp.sh "general position subset selection algorithm"
