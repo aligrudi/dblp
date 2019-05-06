@@ -68,7 +68,9 @@ int main(void)
 		if (!json_str(json_dict(info, "pages"), tok, sizeof(tok)))
 			printf("%%P  %s\n", tok);
 		if (!json_str(json_dict(info, "doi"), tok, sizeof(tok)))
-			printf("%%O  http://dx.doi.org/%s\n", tok);
+			printf("%%O  https://doi.org/%s\n", tok);
+		if (!json_str(json_dict(info, "ee"), tok, sizeof(tok)))
+			printf("%%O  %s\n", tok);
 		if (!json_str(json_dict(info, "url"), tok, sizeof(tok)))
 			printf("%%O  %s\n", tok);
 		printf("\n");
