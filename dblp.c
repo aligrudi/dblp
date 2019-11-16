@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 	for (i = 1; i < argc; i++) {
 		if (argv[i][0] == '-' && argv[i][1] == 'b') {
 			tex = 1;
-		} if (argv[i][0] == '-' && argv[i][1] == 'r') {
+		} else if (argv[i][0] == '-' && argv[i][1] == 'r') {
 			tex = 0;
 		} else if (argv[i][0] == '-' && argv[i][1] == 'h') {
 			printf("usage: %s [options] <dblp.json >bib.ref\n\n", argv[0]);
