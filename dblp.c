@@ -23,6 +23,15 @@
 
 static int refno;
 
+static int readauthor(char *author, char *dst, int len)
+{
+	if (!json_str(author, dst, len))
+		return 0;
+	if (json_dict(author, "text"))
+		return json_str(json_dict(author, "text"), dst, len);
+	return 1;
+}
+
 static void outref(char *info)
 {
 	char *authors;
@@ -36,10 +45,10 @@ static void outref(char *info)
 	if (authors) {
 		char *author = json_dict(authors, "author");
 		for (j = 0; json_list(author, j); j++)
-			if (!json_str(json_list(author, j), tok, sizeof(tok)))
+			if (!readauthor(json_list(author, j), tok, sizeof(tok)))
 				printf("%%A  %s\n", tok);
 		if (!json_list(author, 0))
-			if (!json_str(author, tok, sizeof(tok)))
+			if (!readauthor(author, tok, sizeof(tok)))
 				printf("%%A  %s\n", tok);
 	}
 	if (!json_str(json_dict(info, "title"), tok, sizeof(tok)))
@@ -83,10 +92,10 @@ static void outbib(char *info)
 		char *author = json_dict(authors, "author");
 		printf("  author = {");
 		for (j = 0; json_list(author, j); j++)
-			if (!json_str(json_list(author, j), tok, sizeof(tok)))
+			if (!readauthor(json_list(author, j), tok, sizeof(tok)))
 				printf("%s%s", j ? " and " : "", tok);
 		if (!json_list(author, 0))
-			if (!json_str(author, tok, sizeof(tok)))
+			if (!readauthor(author, tok, sizeof(tok)))
 				printf("%s", tok);
 		printf("},\n");
 	}
