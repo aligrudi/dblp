@@ -81,7 +81,7 @@ static void outbib(char *info)
 	if (!json_str(json_dict(info, "type"), tok, sizeof(tok)))
 		type = tok[0];
 	if (type == 'J' || type == 'I')
-		printf("@journal");
+		printf("@article");
 	if (type == 'C')
 		printf("@inproceedings");
 	if (type == 'B')
